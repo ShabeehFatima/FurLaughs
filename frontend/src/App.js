@@ -14,7 +14,7 @@ function App() {
       setError("");
     }
     catch (err) {
-      setError("Could not fetch pun. Please try again later!");
+      setError("Oops! Couldn't fetch a pun. Try Again!");
     }
   };
   useEffect(() => {
@@ -22,16 +22,20 @@ function App() {
   }, []);
 
   return(
-    <div style = {{textAlign : "center", marginTop : "50px"}}>
-      <h1>Fur Laughs</h1>
+    <div className="app-container">
+    <h1 className="title">FurLaughs</h1>
+    <div className="content">
       {error ? (
-        <p style = {{color : "Red", }} > {error}</p>
-      ) : ( 
-        <p style = {{fontSize : "20px"}} > {pun}</p>
+        <p className="error">{error}</p>
+      ) : (
+        <p className="pun">{pun || "Fetching a pun for you..."}</p>
       )}
-      <button onClick = {fetchRandomPun} style = {{marginTop: "20px" , padding : "10px 20px", fontSize : "16px"}}>Get Another Pun</button>
+      <button className="fetch-button" onClick={fetchRandomPun}>
+        Get Another Pun
+      </button>
     </div>
-  );
+  </div>
+);
 }
 
 export default App;
