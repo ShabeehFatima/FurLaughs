@@ -13,7 +13,7 @@ def get_db_connection():
     return conn
 
 #Route to get all puns
-@app.route('/puns', methods=['GET'])
+@app.route('/puns', methods=['GET'], strict_slashes=False)
 def get_puns():
     conn = get_db_connection()
     puns = conn.execute('SELECT * FROM puns').fetchall()
@@ -21,7 +21,7 @@ def get_puns():
     return jsonify({'puns': [dict(pun) for pun in puns]})
 
 #Route to get random pun
-@app.route('/puns/random', methods=['GET'])
+@app.route('/puns/random', methods=['GET'], strict_slashes=False)
 def get_random_pun():
     conn = get_db_connection()
     pun = conn.execute('SELECT * FROM puns ORDER BY RANDOM() LIMIT 1').fetchone()
@@ -29,6 +29,19 @@ def get_random_pun():
     if pun:
         return jsonify ({'pun' : dict(pun)['pun']})
     return jsonify({'error' : 'No puns found'}), 404
+
+#Route to add new pun
+@app.route('/puns/add', methods=['POST'], strict_slashes=False)
+def add_new_pun():
+    data = request.get_json() #parse json data from request
+    new_pun = data.get('new_pun')
+    if not new_pun:
+        return jsonify ({'Error: Pun not provided. Please enter a valid pun'}), 400
+    conn = get_db_connection()
+    conn.execute('INSERT INTO puns (pun) VALUES (?)', (new_pun,))
+    conn.commit()
+    conn.close
+    return jsonify({'message' : 'Pun added successfully!', 'pun' : new_pun}), 201
 
 #Serve react static files
 @app.route('/')
