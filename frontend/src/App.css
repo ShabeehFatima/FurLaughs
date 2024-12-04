@@ -1,87 +1,94 @@
-/* General Reset */
-body, html {
+/* General styles for the app */
+body {
   margin: 0;
-  padding: 0;
-  font-family: "Inter", sans-serif;
-  background-color: #f4f4f9;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f7fa; /* Light pastel background */
   color: #333;
 }
 
-/* Container */
+/* Container for the entire app */
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  text-align: center;
   padding: 20px;
   box-sizing: border-box;
 }
 
-/* Title */
+/* Title styling */
 .title {
   font-size: 2.5rem;
-  font-weight: 700;
-  color: #2c3e50;
+  color: #ff6b6b; /* Bright and fun color */
   margin-bottom: 20px;
 }
 
-/* Content */
+/* Content area for displaying puns */
 .content {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 30px 20px;
-  max-width: 400px;
-  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-/* Pun Text */
 .pun {
-  font-size: 1.5rem;
-  line-height: 1.8;
-  color: #34495e;
-  margin-bottom: 20px;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Error Message */
-.error {
   font-size: 1.2rem;
-  color: #e74c3c;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  color: #444;
 }
 
-/* Button */
-.fetch-button {
-  background: #3498db;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
+.error {
+  color: #ff6b6b;
   font-size: 1rem;
-  font-weight: 600;
+  margin: 10px 0;
+}
+
+/* Button styles */
+.fetch-button,
+.toggle-add-button,
+.add-button {
+  background-color: #4caf50; /* Green buttons */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s;
+  margin-top: 10px;
 }
 
-.fetch-button:hover {
-  background: #2980b9;
+.fetch-button:hover,
+.toggle-add-button:hover,
+.add-button:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
 }
 
-.fetch-button:active {
-  background: #1c5986;
+/* Add pun container */
+.add-pun-container {
+  text-align: center;
+  margin-top: 20px;
 }
 
-/* Fade-in Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.add-pun-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.pun-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 80%;
+  max-width: 300px;
+}
+
+/* Success message */
+.success-message {
+  color: #4caf50; /* Green for success */
+  font-size: 1rem;
+  margin-top: 10px;
 }
